@@ -1,5 +1,7 @@
 package itstep.learning.oop;
 
+import java.util.Locale;
+
 public class Pump extends Product
 {
     int productivity;
@@ -10,7 +12,7 @@ public class Pump extends Product
     public void setProductivity(int productivity) {
         this.productivity = productivity;
     }
-    public Pump(int productivity, String manufacturer) {
+    public Pump(String manufacturer, int productivity) {
         this.setProductivity(productivity);
         super.setManufacturer(manufacturer);
     }
@@ -18,7 +20,8 @@ public class Pump extends Product
     @Override
     public String getCard() {
         return String.format(
-                "Pump: '%s', Power: %d l/h",
+                Locale.ROOT,
+                "Pump: '%s', Productivity: %d l/h",
                 super.getManufacturer(), this.getProductivity());
     }
 }

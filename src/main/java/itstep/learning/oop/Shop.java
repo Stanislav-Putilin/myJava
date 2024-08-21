@@ -9,8 +9,9 @@ public class Shop {
 
     public Shop() {
         products = new ArrayList<Product>();
-        products.add(new Lamp("ph", 60.0));
-        products.add(new Pump(100, "pha"));
+        products.add(new Lamp("Philips", 60.0));
+        products.add(new Pump("Sulzer",100));
+        products.add(new Accumulator("Panasonic",5000));
     }
 
     public void printProducts(){
