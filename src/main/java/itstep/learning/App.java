@@ -10,9 +10,8 @@ public class App
 {
     public static void main( String[] args )
     {
-//        new Basics().run();
+//      new Basics().run();
 
-        Shop shop = new Shop();
-        shop.printProducts();
+        new Shop().run();
     }
 }

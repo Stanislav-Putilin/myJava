@@ -2,7 +2,8 @@ package itstep.learning.oop;
 
 import java.util.Locale;
 
-public class Pump extends Product
+@Warranty("2 years")
+public class Pump extends Product implements Manual
 {
     int productivity;
     public int getProductivity() {
@@ -15,6 +16,11 @@ public class Pump extends Product
     public Pump(String manufacturer, int productivity) {
         this.setProductivity(productivity);
         super.setManufacturer(manufacturer);
+    }
+
+    @Works("as pump")
+    public void pump(){
+        System.out.println("Pump on:" + getCard());
     }
 
     @Override

@@ -2,7 +2,7 @@ package itstep.learning.oop;
 
 import java.util.Locale;
 
-public class Lamp extends Product
+public class Lamp extends Product implements Testeble
 {
     private double power;
 
@@ -30,5 +30,16 @@ public class Lamp extends Product
                 Locale.ROOT,
                 "Lamp: '%s', Power: %.1f W",
                 super.getManufacturer(), this.getPower());
+    }
+
+    @Override
+    public void test()
+    {
+        System.out.println("Testing:" + getCard());
+    }
+
+    @Works("as lamp")
+    public void shine(){
+        System.out.println("Shine on:" + getCard());
     }
 }

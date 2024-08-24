@@ -2,7 +2,8 @@ package itstep.learning.oop;
 
 import java.util.Locale;
 
-public class Accumulator extends Product
+@Warranty("5 years")
+public class Accumulator extends Product implements Testeble
 {
     private Integer capacity;
 
@@ -25,5 +26,16 @@ public class Accumulator extends Product
                 Locale.ROOT,
                 "Accumulator: '%s', Capacity: %d Ah",
                 super.getManufacturer(), this.getCapacity());
+    }
+
+    @Override
+    public void test()
+    {
+        System.out.println("Testing:" + getCard());
+    }
+
+    @Works("as accumulator")
+    public void discharges(){
+        System.out.println("Discharges on:" + getCard());
     }
 }
