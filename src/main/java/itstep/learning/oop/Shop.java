@@ -99,7 +99,6 @@ public class Shop {
         }
     }
 
-
     private void showWarranty() {
         for (Product product : products) {
 
