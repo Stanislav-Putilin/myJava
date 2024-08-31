@@ -20,13 +20,13 @@ public class App
 //                .getInstance(iocDemo.class)
 //                .run();
 
-//        Guice.createInjector(new ServicesModule(), new DbModule())
-//                .getInstance(DbDemo.class)
-//                .run();
-
-        Guice.createInjector(new RandModule())
-                .getInstance(RandDemo.class)
+        Guice.createInjector(new ServicesModule(), new DbModule())
+                .getInstance(DbDemo.class)
                 .run();
+
+//        Guice.createInjector(new RandModule())
+//                .getInstance(RandDemo.class)
+//                .run();
 
 //        Guice.createInjector(new ServicesModule(), new DbModule())
 //                .getInstance(FileDemo.class)

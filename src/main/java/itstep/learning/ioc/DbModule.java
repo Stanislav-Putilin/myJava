@@ -11,7 +11,7 @@ import java.sql.SQLException;
 public class DbModule extends AbstractModule {
 
     private Connection connection = null;
-    private Driver driver = null;
+//    private Driver driver = null;
 
     @Provides
     private Connection getConnection()
