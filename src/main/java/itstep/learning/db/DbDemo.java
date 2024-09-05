@@ -4,8 +4,13 @@ import java.sql.*;
 
 public class DbDemo {
 
+
+    private final Connection connection;
+
     @Inject
-    private Connection connection;
+    public DbDemo(Connection connection) {
+        this.connection = connection;
+    }
 
     public void run()
     {
@@ -30,4 +35,5 @@ public class DbDemo {
            System.err.println(ex.getMessage());
         }
     }
+
 }
