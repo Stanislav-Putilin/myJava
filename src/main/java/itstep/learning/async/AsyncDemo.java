@@ -11,8 +11,71 @@ public class AsyncDemo
         System.out.println("AsyncDemo");
 //        percentDemo();
 //        taskDemo();
-        pandigitalDemo();
+//        pandigitalDemo();
+        pandigitalTaskDemo();
     }
+
+    private void pandigitalTaskDemo()
+    {
+        pandigital = "";
+        try{
+
+            Future<String>[] tasks = new Future[10];
+
+            for (int i = 1; i <= 10; i++)
+            {
+                tasks[i-1] = pool.submit(new PandigitalCallable(i));
+            }
+
+            for (int i = 1; i <= 10; i++)
+            {
+                String pandigitalTask = tasks[i-1].get();
+                if(pandigitalTask.length() == 10)
+                {
+                    System.out.println("task: " + (i) + " pandigital: " + pandigitalTask + " ++++++++ Last");
+                }
+                else {
+                    System.out.println("task: " + (i) + " pandigital: " + pandigitalTask);
+                }
+            }
+        }
+        catch (InterruptedException ignore){}
+        catch (ExecutionException e) {
+            throw new RuntimeException(e);
+        }
+
+        pool.shutdown();
+        try{
+            pool.awaitTermination(5000,TimeUnit.MICROSECONDS);
+
+        }catch (InterruptedException ignore){}
+        pool.shutdownNow();
+    }
+
+    class PandigitalCallable implements Callable<String>{
+
+        private final int task;
+
+        public PandigitalCallable(int task){
+            this.task = task;
+        }
+
+        @Override
+        public String call() throws Exception {
+
+            String temp;
+            synchronized (sumLocker)
+            {
+                pandigital = pandigital + (task - 1);
+                temp = pandigital;
+
+            }
+            return temp;
+        }
+    }
+
+
+
 
     private String pandigital;
     private int treadsCountdown;
