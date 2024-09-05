@@ -9,10 +9,100 @@ public class AsyncDemo
     public void run()
     {
         System.out.println("AsyncDemo");
-
 //        percentDemo();
-        taskDemo();
+//        taskDemo();
+        pandigitalDemo();
     }
+
+    private String pandigital;
+    private int treadsCountdown;
+
+    private void pandigitalDemo()
+    {
+        pandigital = "";
+        treadsCountdown = 10;
+        Thread[] treads = new Thread[treadsCountdown];
+        for(int i = 1; i <= treadsCountdown; i++)
+        {
+            treads[i-1] = new Thread(new PandigitalRunnable(i));
+            treads[i-1].start();
+        }
+
+        for(int i = 1; i <= 10; i++)
+        {
+            try{
+                treads[i-1].join();
+            } catch (InterruptedException ignore) {}
+        }
+
+        System.out.println("total: " + pandigital);
+    }
+
+    private class PandigitalRunnable implements Runnable{
+
+        private final int thread;
+
+        public PandigitalRunnable(int thread)
+        {
+            this.thread = thread;
+        }
+
+        @Override
+        public void run()
+        {
+            try {
+                TimeUnit.MICROSECONDS.sleep(2000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+
+            String temp;
+            int lockCountdown;
+
+            synchronized (sumLocker)
+            {
+                pandigital = pandigital + (thread - 1);
+                temp = pandigital;
+                lockCountdown = --treadsCountdown;
+            }
+            System.out.println("thread: " + thread + " pandigital: " + temp);
+
+            if (lockCountdown == 0)
+            {
+                System.out.println("thread: " + thread + " pandigital: " + pandigital + " Last");
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     private void taskDemo()
     {
@@ -114,7 +204,6 @@ public class AsyncDemo
     }
 
     private double sum;
-    private int treadsCountdown;
 
     private void percentDemo() {
         sum = 100.0;

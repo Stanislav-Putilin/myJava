@@ -21,9 +21,9 @@ public class App
 //                .getInstance(iocDemo.class)
 //                .run();
 
-        Guice.createInjector(new DbModule())
-                .getInstance(DbDemo.class)
-                .run();
+//        Guice.createInjector(new DbModule())
+//                .getInstance(DbDemo.class)
+//                .run();
 
 //        Guice.createInjector(new RandModule())
 //                .getInstance(RandDemo.class)
@@ -33,8 +33,8 @@ public class App
 //                .getInstance(FileDemo.class)
 //                .run();
 
-//        Guice.createInjector()
-//                .getInstance(AsyncDemo.class)
-//                .run();
+        Guice.createInjector()
+                .getInstance(AsyncDemo.class)
+                .run();
     }
 }
